@@ -22,6 +22,18 @@ angular.module('app.routes', [])
     controller: 'joinLifeCtrl'
   })
 
+  .state('start', {
+    url: '/start',
+    templateUrl: 'templates/start.html',
+    controller: 'startCtrl'
+  })
+
+  .state('verifyOtp', {
+    url: '/verify-otp',
+    templateUrl: 'templates/verifyOtp.html',
+    controller: 'verifyOtpCtrl'
+  })
+
 $urlRouterProvider.otherwise('/login')
 
   
