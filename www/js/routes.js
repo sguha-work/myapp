@@ -34,6 +34,24 @@ angular.module('app.routes', [])
     controller: 'verifyOtpCtrl'
   })
 
+  .state('editProfile', {
+    url: '/edit-profile',
+    templateUrl: 'templates/editProfile.html',
+    controller: 'editProfileCtrl'
+  })
+
+  .state('changePassword', {
+    url: '/change-password',
+    templateUrl: 'templates/changePassword.html',
+    controller: 'changePasswordCtrl'
+  })
+
+  .state('loading', {
+    url: '/loading',
+    templateUrl: 'templates/loading.html',
+    controller: 'loadingCtrl'
+  })
+
 $urlRouterProvider.otherwise('/login')
 
   
