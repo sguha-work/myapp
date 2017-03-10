@@ -52,6 +52,12 @@ angular.module('app.routes', [])
     controller: 'loadingCtrl'
   })
 
+  .state('friends', {
+    url: '/friends',
+    templateUrl: 'templates/friends.html',
+    controller: 'friendsCtrl'
+  })
+
 $urlRouterProvider.otherwise('/login')
 
   
