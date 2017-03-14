@@ -64,6 +64,18 @@ angular.module('app.routes', [])
     controller: 'homeCtrl'
   })
 
+  .state('profile', {
+    url: '/profile',
+    templateUrl: 'templates/profile.html',
+    controller: 'profileCtrl'
+  })
+
+  .state('pageList', {
+    url: '/page-list',
+    templateUrl: 'templates/pageList.html',
+    controller: 'pageListCtrl'
+  })
+
 $urlRouterProvider.otherwise('/login')
 
   
