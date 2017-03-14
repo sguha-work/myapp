@@ -40,6 +40,18 @@ angular.module('app.routes', [])
     controller: 'editProfileCtrl'
   })
 
+  .state('image', {
+    url: '/image',
+    templateUrl: 'templates/image.html',
+    controller: 'imageCtrl'
+  })
+
+  .state('reaction', {
+    url: '/reaction',
+    templateUrl: 'templates/reaction.html',
+    controller: 'reactionCtrl'
+  })
+
   .state('changePassword', {
     url: '/change-password',
     templateUrl: 'templates/changePassword.html',
@@ -76,7 +88,19 @@ angular.module('app.routes', [])
     controller: 'pageListCtrl'
   })
 
-$urlRouterProvider.otherwise('/login')
+  .state('updateStatus', {
+    url: '/update-status',
+    templateUrl: 'templates/updateStatus.html',
+    controller: 'updateStatusCtrl'
+  })
+
+  .state('addImage', {
+    url: '/add-image',
+    templateUrl: 'templates/addImage.html',
+    controller: 'addImageCtrl'
+  })
+
+$urlRouterProvider.otherwise('/page-list')
 
   
 

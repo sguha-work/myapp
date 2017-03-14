@@ -1,15 +1,17 @@
 <ion-view title="page-list" hide-nav-bar="true" id="page11" style="background-color:#43DB57;">
   <ion-content padding="true" class="manual-ios-statusbar-padding">
     <div id="pageList-button-bar13" class="button-bar">
-      <button id="pageList-button54" style="border-radius:1px 1px 1px 1px;" class="button button-balanced  button-block icon ion-home"> 10</button>
+      <a ui-sref="home" id="pageList-button54" style="border-radius:1px 1px 1px 1px;" class="button button-balanced  button-block icon ion-home"> 10</a>
       <button id="pageList-button55" style="color:#F63D0F;" class="button button-balanced  button-block icon ion-chatbubbles"> 10</button>
-      <button id="pageList-button56" class="button button-balanced  button-block icon ion-android-people"></button>
+      <a ui-sref="friends" id="pageList-button56" class="button button-balanced  button-block icon ion-android-people"></a>
     </div>
-    <h1 id="pageList-heading5" style="color:#12A112;">Tap to go to ----</h1>
-    <button id="pageList-button60" class="button button-balanced  button-block">Update status</button>
-    <button id="pageList-button57" class="button button-balanced  button-block icon-right ion-android-contact">My profile</button>
-    <button id="pageList-button58" class="button button-balanced  button-block icon-right ion-edit">Edit profile</button>
-    <button id="pageList-button59" class="button button-balanced  button-block icon-right ion-edit">Change password</button>
+    <h3 id="pageList-heading5" style="color:#12A112;">Tap to go to ----</h3>
+    <a ui-sref="updateStatus" id="pageList-button60" class="button button-balanced  button-block">Update status</a>
+    <a ui-sref="profile" id="pageList-button57" class="button button-balanced  button-block icon-right ion-android-contact">My profile</a>
+    <a ui-sref="addImage" id="pageList-button63" class="button button-balanced  button-block icon-right ion-image">Share pic</a>
+    <a ui-sref="editProfile" id="pageList-button58" class="button button-balanced  button-block icon-right ion-edit">Edit profile</a>
+    <a ui-sref="changePassword" id="pageList-button59" class="button button-balanced  button-block icon-right ion-edit">Change password</a>
+    <button id="pageList-button11" class="button button-balanced  button-block icon-right ion-edit">Forget password</button>
     <button id="pageList-button61" class="button button-balanced  button-block icon-right ion-android-settings">Settings</button>
   </ion-content>
 </ion-view>
