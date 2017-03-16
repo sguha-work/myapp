@@ -70,6 +70,18 @@ angular.module('app.routes', [])
     controller: 'friendsCtrl'
   })
 
+  .state('chat', {
+    url: '/chat',
+    templateUrl: 'templates/chat.html',
+    controller: 'chatCtrl'
+  })
+
+  .state('chatList', {
+    url: '/chat-list',
+    templateUrl: 'templates/chatList.html',
+    controller: 'chatListCtrl'
+  })
+
   .state('home', {
     url: '/home',
     templateUrl: 'templates/home.html',
