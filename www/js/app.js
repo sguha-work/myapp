@@ -82,3 +82,5 @@ angular.module('app', ['ionic', 'app.controllers', 'app.routes', 'app.directives
         }
     };
 });
+
+var controllers = angular.module('app.controllers', []);
