@@ -106,16 +106,10 @@ angular.module('app.routes', [])
     controller: 'updateStatusCtrl'
   })
 
-  .state('shareImage', {
-    url: '/share-image',
-    templateUrl: 'templates/shareImage.html',
-    controller: 'shareImageCtrl'
-  })
-
-  .state('shareLocation', {
-    url: '/page19',
-    templateUrl: 'templates/shareLocation.html',
-    controller: 'shareLocationCtrl'
+  .state('addImage', {
+    url: '/add-image',
+    templateUrl: 'templates/addImage.html',
+    controller: 'addImageCtrl'
   })
 
 $urlRouterProvider.otherwise('/page-list')

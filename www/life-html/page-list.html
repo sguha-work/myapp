@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<!-- saved from url=(0033)http://localhost:8100/#/page-list -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>
+    
+    <script>
+      // Injected Ionic Go To URL Live Reload Plugin
+      window.LiveReloadPlugin_IonicGoToUrl = (function() {
+        var GOTO_KEY = "__ionic_goto_url__";
+        var HISTORY_GO_KEY = "__ionic_history_go__";
+        var GoToUrlPlugin = function(window, host) {
+          this.window = window;
+          this.host = host;
+        }
+        GoToUrlPlugin.identifier = "__ionic_goto_url__";
+        GoToUrlPlugin.version = "1.0";
+        GoToUrlPlugin.prototype.reload = function(path) {
+          try {
+            if (path) {
+              if (path.indexOf(GOTO_KEY) === 0) {
+                this.window.document.location = path.replace(GOTO_KEY, "");
+                return true;
+              }
+              if (path.indexOf(HISTORY_GO_KEY) === 0) {
+                this.window.document.history.go( parseInt(path.replace(HISTORY_GO_KEY, ""), 10));
+                return true;
+              }
+            }
+          } catch(e) {
+            console.log(e);
+          }
+          return false;
+        };
+        return GoToUrlPlugin;
+      })();
+    </script>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title>page-list</title>
+
+    
+    
+    <script src="./page-list_files/ionic.bundle.js.download"></script>
+
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="./page-list_files/cordova.js.download"></script>
+
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+
+    
+    <link href="./page-list_files/ionic.css" rel="stylesheet">
+    
+
+    <style type="text/css">
+      .platform-ios .manual-ios-statusbar-padding{
+        padding-top:20px;
+      }
+      .manual-remove-top-padding{
+        padding-top:0px; 
+      }
+      .manual-remove-top-padding .scroll{
+        padding-top:0px !important;
+      }
+      ion-list.manual-list-fullwidth div.list, .list.card.manual-card-fullwidth {
+        margin-left:-10px;
+        margin-right:-10px;
+      }
+      ion-list.manual-list-fullwidth div.list > .item, .list.card.manual-card-fullwidth > .item {
+        border-radius:0px;
+        border-left:0px;
+        border-right: 0px;
+      }
+      .show-list-numbers-and-dots ul{
+        list-style-type: disc;
+        padding-left:40px;
+      }
+      .show-list-numbers-and-dots ol{
+        list-style-type: decimal;
+        padding-left:40px;
+      }
+    </style>
+
+    <script src="./page-list_files/app.js.download"></script>
+    <script src="./page-list_files/controllers.js.download"></script>
+    <script src="./page-list_files/routes.js.download"></script>
+    
+     
+    <script src="./page-list_files/directives.js.download"></script>
+     
+    <script src="./page-list_files/services.js.download"></script>
+    
+
+    <!-- Only required for Tab projects w/ pages in multiple tabs 
+    <script src="lib/ionicuirouter/ionicUIRouter.js"></script>
+    -->
+
+  </head>
+  <body ng-app="app" animation="slide-left-right-ios7" class="grade-a platform-browser platform-win32 platform-ready">
+  <div>
+  <div>
+    <ion-nav-bar class="bar-stable nav-bar-container hide" nav-bar-transition="ios" nav-bar-direction="none" nav-swipe="">
+      <ion-nav-back-button class="hide"></ion-nav-back-button>
+    <div class="nav-bar-block" nav-bar="cached"><ion-header-bar class="bar-stable bar bar-header" align-title="center"><button ng-click="$ionicGoBack()" class="button back-button hide buttons  button-clear header-item"><i class="icon ion-ios-arrow-back"></i> <span class="back-text"><span class="default-title">Back</span><span class="previous-title hide"></span></span></button><div class="title title-center header-item"></div></ion-header-bar></div><div class="nav-bar-block" nav-bar="active"><ion-header-bar class="bar-stable bar bar-header" align-title="center"><button ng-click="$ionicGoBack()" class="button back-button hide buttons  button-clear header-item"><i class="icon ion-ios-arrow-back"></i> <span class="back-text"><span class="default-title">Back</span><span class="previous-title hide"></span></span></button><div class="title title-center header-item">page-list</div></ion-header-bar></div></ion-nav-bar>
+    <ion-nav-view class="view-container" nav-view-transition="ios" nav-view-direction="none" nav-swipe=""><ion-view hide-nav-bar="true" id="page11" style="background-color: rgb(67, 219, 87); opacity: 1; transform: translate3d(0%, 0px, 0px);" class="pane" state="pageList" nav-view="active">
+  <ion-content padding="true" class="manual-ios-statusbar-padding scroll-content ionic-scroll"><div class="scroll padding" style="transform: translate3d(0px, 0px, 0px) scale(1);">
+    <div id="pageList-button-bar13" class="button-bar">
+      <a ui-sref="home" id="pageList-button54" style="border-radius:1px 1px 1px 1px;" class="button button-balanced  button-block icon ion-home" href="http://localhost:8100/#/home"> 10</a>
+      <a ui-sref="chatList" id="pageList-button55" style="color:#F63D0F;" class="button button-balanced  button-block icon ion-chatbubbles" href="http://localhost:8100/#/chat-list"> 10</a>
+      <a ui-sref="friends" id="pageList-button56" class="button button-balanced  button-block icon ion-android-people" href="http://localhost:8100/#/friends"></a>
+    </div>
+    <h3 id="pageList-heading5" style="color:#12A112;">Tap to go to ----</h3>
+    <a ui-sref="updateStatus" id="pageList-button60" class="button button-balanced  button-block" href="http://localhost:8100/#/update-status">Update status</a>
+    <a ui-sref="profile" id="pageList-button57" class="button button-balanced  button-block icon-right ion-android-contact" href="http://localhost:8100/#/profile">My profile</a>
+    <a ui-sref="addImage" id="pageList-button63" class="button button-balanced  button-block icon-right ion-image" href="http://localhost:8100/#/add-image">Share pic</a>
+    <button id="pageList-button15" class="button button-balanced  button-block icon-right ion-ios-people">Create group</button>
+    <a ui-sref="editProfile" id="pageList-button58" class="button button-balanced  button-block icon-right ion-edit" href="http://localhost:8100/#/edit-profile">Edit profile</a>
+    <a ui-sref="changePassword" id="pageList-button59" class="button button-balanced  button-block icon-right ion-edit" href="http://localhost:8100/#/change-password">Change password</a>
+    <button id="pageList-button61" class="button button-balanced  button-block icon-right ion-android-settings">Settings</button>
+  </div><div class="scroll-bar scroll-bar-v"><div class="scroll-bar-indicator scroll-bar-fade-out" style="transform: translate3d(0px, 0px, 0px) scaleY(1); height: 0px;"></div></div></ion-content>
+</ion-view></ion-nav-view>
+  </div>
+</div>
+  
+<script>//<![CDATA[
+document.write('<script src="//' + (location.hostname || 'localhost') + ':35729/livereload.js?snipver=1"><\/script>')
+//]]></script><script src="./page-list_files/livereload.js.download"></script>
+
+
+</body></html>
