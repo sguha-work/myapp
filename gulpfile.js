@@ -9,7 +9,9 @@ var sh = require('shelljs');
 var header = require('gulp-header');
 
 var paths = {
-    sass: ['./scss/**/*.scss']
+    sass: ['./scss/**/*.scss'],
+    controllers: ['./www/js/codebase/controllers/*.js'],
+    services: ['./www/js/codebase/services/*.js']
 };
 
 gulp.task('default', ['controllers', 'services']);
@@ -38,8 +40,9 @@ gulp.task('services', function(done) {
         .pipe(gulp.dest('./www/js/'));
 });
 
-gulp.task('watch', ['sass'], function() {
-    gulp.watch(paths.sass, ['sass']);
+gulp.task('watch', ['controllers', 'services'], function() {
+    gulp.watch(paths.controllers, ['controllers']);
+    gulp.watch(paths.services, ['services']);
 });
 
 gulp.task('install', ['git-check'], function() {

@@ -2,124 +2,124 @@ angular.module('app.routes', [])
 
 .config(function($stateProvider, $urlRouterProvider) {
 
-  // Ionic uses AngularUI Router which uses the concept of states
-  // Learn more here: https://github.com/angular-ui/ui-router
-  // Set up the various states which the app can be in.
-  // Each state's controller can be found in controllers.js
-  $stateProvider
-    
-  
+    // Ionic uses AngularUI Router which uses the concept of states
+    // Learn more here: https://github.com/angular-ui/ui-router
+    // Set up the various states which the app can be in.
+    // Each state's controller can be found in controllers.js
+    $stateProvider
 
-      .state('login', {
-    url: '/login',
-    templateUrl: 'templates/login.html',
-    controller: 'loginCtrl'
-  })
 
-  .state('joinLife', {
-    url: '/join',
-    templateUrl: 'templates/joinLife.html',
-    controller: 'joinLifeCtrl'
-  })
 
-  .state('start', {
-    url: '/start',
-    templateUrl: 'templates/start.html',
-    controller: 'startCtrl'
-  })
+        .state('login', {
+        url: '/login',
+        templateUrl: 'templates/login.html',
+        controller: 'loginCtrl'
+    })
 
-  .state('verifyOtp', {
-    url: '/verify-otp',
-    templateUrl: 'templates/verifyOtp.html',
-    controller: 'verifyOtpCtrl'
-  })
+    .state('joinLife', {
+        url: '/join',
+        templateUrl: 'templates/joinLife.html',
+        controller: 'joinLifeCtrl'
+    })
 
-  .state('editProfile', {
-    url: '/edit-profile',
-    templateUrl: 'templates/editProfile.html',
-    controller: 'editProfileCtrl'
-  })
+    .state('start', {
+        url: '/start',
+        templateUrl: 'templates/start.html',
+        controller: 'startCtrl'
+    })
 
-  .state('image', {
-    url: '/image',
-    templateUrl: 'templates/image.html',
-    controller: 'imageCtrl'
-  })
+    .state('verifyOtp', {
+        url: '/verify-otp',
+        templateUrl: 'templates/verifyOtp.html',
+        controller: 'verifyOtpCtrl'
+    })
 
-  .state('reaction', {
-    url: '/reaction',
-    templateUrl: 'templates/reaction.html',
-    controller: 'reactionCtrl'
-  })
+    .state('editProfile', {
+        url: '/edit-profile',
+        templateUrl: 'templates/editProfile.html',
+        controller: 'editProfileCtrl'
+    })
 
-  .state('changePassword', {
-    url: '/change-password',
-    templateUrl: 'templates/changePassword.html',
-    controller: 'changePasswordCtrl'
-  })
+    .state('image', {
+        url: '/image',
+        templateUrl: 'templates/image.html',
+        controller: 'imageCtrl'
+    })
 
-  .state('loading', {
-    url: '/loading',
-    templateUrl: 'templates/loading.html',
-    controller: 'loadingCtrl'
-  })
+    .state('reaction', {
+        url: '/reaction',
+        templateUrl: 'templates/reaction.html',
+        controller: 'reactionCtrl'
+    })
 
-  .state('friends', {
-    url: '/friends',
-    templateUrl: 'templates/friends.html',
-    controller: 'friendsCtrl'
-  })
+    .state('changePassword', {
+        url: '/change-password',
+        templateUrl: 'templates/changePassword.html',
+        controller: 'changePasswordCtrl'
+    })
 
-  .state('chat', {
-    url: '/chat',
-    templateUrl: 'templates/chat.html',
-    controller: 'chatCtrl'
-  })
+    .state('loading', {
+        url: '/loading',
+        templateUrl: 'templates/loading.html',
+        controller: 'loadingCtrl'
+    })
 
-  .state('chatList', {
-    url: '/chat-list',
-    templateUrl: 'templates/chatList.html',
-    controller: 'chatListCtrl'
-  })
+    .state('friends', {
+        url: '/friends',
+        templateUrl: 'templates/friends.html',
+        controller: 'friendsCtrl'
+    })
 
-  .state('home', {
-    url: '/home',
-    templateUrl: 'templates/home.html',
-    controller: 'homeCtrl'
-  })
+    .state('chat', {
+        url: '/chat',
+        templateUrl: 'templates/chat.html',
+        controller: 'chatCtrl'
+    })
 
-  .state('profile', {
-    url: '/profile',
-    templateUrl: 'templates/profile.html',
-    controller: 'profileCtrl'
-  })
+    .state('chatList', {
+        url: '/chat-list',
+        templateUrl: 'templates/chatList.html',
+        controller: 'chatListCtrl'
+    })
 
-  .state('pageList', {
-    url: '/page-list',
-    templateUrl: 'templates/pageList.html',
-    controller: 'pageListCtrl'
-  })
+    .state('home', {
+        url: '/home',
+        templateUrl: 'templates/home.html',
+        controller: 'homeCtrl'
+    })
 
-  .state('updateStatus', {
-    url: '/update-status',
-    templateUrl: 'templates/updateStatus.html',
-    controller: 'updateStatusCtrl'
-  })
+    .state('profile', {
+        url: '/profile',
+        templateUrl: 'templates/profile.html',
+        controller: 'profileCtrl'
+    })
 
-  .state('shareImage', {
-    url: '/share-image',
-    templateUrl: 'templates/shareImage.html',
-    controller: 'shareImageCtrl'
-  })
+    .state('pageList', {
+        url: '/page-list',
+        templateUrl: 'templates/pageList.html',
+        controller: 'pageListCtrl'
+    })
 
-  .state('shareLocation', {
-    url: '/page19',
-    templateUrl: 'templates/shareLocation.html',
-    controller: 'shareLocationCtrl'
-  })
+    .state('updateStatus', {
+        url: '/update-status',
+        templateUrl: 'templates/updateStatus.html',
+        controller: 'updateStatusCtrl'
+    })
 
-$urlRouterProvider.otherwise('/page-list')
+    .state('shareImage', {
+        url: '/share-image',
+        templateUrl: 'templates/shareImage.html',
+        controller: 'shareImageCtrl'
+    })
 
-  
+    .state('shareLocation', {
+        url: '/page19',
+        templateUrl: 'templates/shareLocation.html',
+        controller: 'shareLocationCtrl'
+    })
+
+    $urlRouterProvider.otherwise('/start')
+
+
 
 });
