@@ -46,9 +46,6 @@ controllers.controller('joinLifeCtrl', ['$scope', '$stateParams', 'CommonService
             }
         });
 
-        $scope.emailCheckOnKeyPress = (function() {
-
-        });
 
     }
 ]);
