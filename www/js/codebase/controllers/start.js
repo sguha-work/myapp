@@ -1,7 +1,5 @@
-controllers.controller('startCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
-    // You can include any angular dependencies as parameters for this function
-    // TIP: Access Route Parameters for your page via $stateParams.parameterName
-    function($scope, $stateParams, $location) {
+controllers.controller('startCtrl', ['$scope', '$stateParams', 'CommonService',
+    function($scope, $stateParams, CommonService) {
         var animate,
             checkForUserAvailabilityFile;
 
@@ -39,10 +37,11 @@ controllers.controller('startCtrl', ['$scope', '$stateParams', // The following 
         });
 
         animate().then(function() {
+            console.log(services);
             checkForUserAvailabilityFile().then(function() {
                 window.location.href = '#/home';
             }, function() {
-                window.location.href = '#/login';
+                CommonService.routeTo('#/login');
             });
         });
     }

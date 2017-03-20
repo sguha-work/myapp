@@ -9,13 +9,26 @@ angular.module('app', ['ionic', 'app.controllers', 'app.routes', 'app.directives
 
 .config(function($ionicConfigProvider, $sceDelegateProvider) {
 
-
     $sceDelegateProvider.resourceUrlWhitelist(['self', '*://www.youtube.com/**', '*://player.vimeo.com/video/**']);
 
 })
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, $ionicPopup) {
+    // Disable BACK button on home
+
     $ionicPlatform.ready(function() {
+        $ionicPlatform.registerBackButtonAction(function(event) {
+            if (true) { // your check here
+                $ionicPopup.confirm({
+                    title: 'Exiting LIFE',
+                    template: 'Are you sure you want to exit???'
+                }).then(function(res) {
+                    if (res) {
+                        ionic.Platform.exitApp();
+                    }
+                })
+            }
+        }, 100);
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
         if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
