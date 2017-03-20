@@ -54,11 +54,57 @@ controllers.controller('imageCtrl', ['$scope', '$stateParams', // The following 
 
     }
 ]);
-controllers.controller('joinLifeCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
-    // You can include any angular dependencies as parameters for this function
-    // TIP: Access Route Parameters for your page via $stateParams.parameterName
-    function($scope, $stateParams) {
+controllers.controller('joinLifeCtrl', ['$scope', '$stateParams', 'CommonService',
+    function($scope, $stateParams, CommonService) {
+        var validation,
+            checkMobileNumber,
+            checkEmail,
+            prepareUserObjectToSignIn,
+            callSendMailAPI,
+            currentElement;
 
+        validation = (function() {
+
+        });
+
+        $scope.joinLife = (function() {
+
+        });
+
+        $scope.setCurrentElement = (function(event) {
+            currentElement = event.currentTarget;
+        });
+
+        $scope.emailCheckOnChange = (function() {
+            var index,
+                flag;
+            index = 0;
+            flag = 0;
+            while (index < currentElement.value.length) {
+                if (CommonService.unsupportedCharectersForEmail.indexOf(currentElement.value[index]) !== -1) {
+                    flag = 1;
+                    break;
+                }
+                index++;
+            }
+            if (flag) {
+                CommonService.showWarning(currentElement);
+            } else {
+                CommonService.hideWarning(currentElement);
+            }
+        });
+
+        $scope.mobileNumberCheckOnChange = (function() {
+            if (isNaN(currentElement.value)) {
+                CommonService.showWarning(currentElement);
+            } else {
+                CommonService.hideWarning(currentElement);
+            }
+        });
+
+        $scope.emailCheckOnKeyPress = (function() {
+
+        });
 
     }
 ]);
