@@ -81,7 +81,7 @@ controllers.controller('joinLifeCtrl', ['$scope', '$stateParams', 'CommonService
             index = 0;
             flag = 0;
             while (index < currentElement.value.length) {
-                if (CommonService.unsupportedCharectersForEmail.indexOf(currentElement.value[index]) !== -1) {
+                if (CommonService.supportedCharectersForEmail.indexOf(currentElement.value[index].toLowerCase()) === -1) {
                     flag = 1;
                     break;
                 }
