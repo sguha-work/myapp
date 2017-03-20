@@ -26,7 +26,7 @@ services.service('CommonService', [function() {
         switch (element.tagName.toLowerCase()) {
             case "input":
                 $(element).parent().css({
-                    "border": "none"
+                    "border": "2px solid rgb(67, 219, 87)"
                 });
                 break;
         }
