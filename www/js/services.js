@@ -44,8 +44,9 @@ services.service('CommonService', [function() {
         var otp = {};
         otp.validFrom = Date.now();
         otp.validTo = Date.now() + 300000;
-        otp.otp = (Date.now() * Math.random * 10000) / 100000;
+        otp.otp = (Date.now() * Math.random() * 10000) % 100000;
         otp.verfied = false;
+        return otp;
     });
 
 }]);
