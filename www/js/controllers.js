@@ -127,9 +127,9 @@ controllers.controller('joinLifeCtrl', ['$scope', '$stateParams', 'CommonService
 
         prepareUserData = (function() {
             var userObject = {};
-            userObject.otpVerified = false;
+            userObject.otp = CommonService.getOTPForUser();
             userObject.name = {};
-            userObject.name.firestName = $scope.user_fullName.split(" ")[0];
+            userObject.name.firstName = $scope.user_fullName.split(" ")[0];
             userObject.name.lastName = $scope.user_fullName.split(" ").pop();
             userObject.name.fullName = $scope.user_fullName;
             userObject.email = $scope.user_email;
