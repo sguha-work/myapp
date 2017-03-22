@@ -65,6 +65,7 @@ controllers.controller('joinLifeCtrl', ['$scope', '$stateParams', 'CommonService
             currentElement,
             prepareUserData,
             validateUserEmail,
+            sendOTPtoUserEmail,
             validateUserMobileNumber;
 
         (function() {
@@ -136,19 +137,34 @@ controllers.controller('joinLifeCtrl', ['$scope', '$stateParams', 'CommonService
             userObject.mobileNumber = $scope.user_mobileNumber;
             userObject.password = $scope.user_password;
             console.log(JSON.stringify(userObject));
-
+            return userObject;
         });
 
         writeUserDataToPhoneMemory = (function() {
             return new Promise(function(resolve, reject) {
-                reject();
+                resolve();
             });
+        });
+
+        sendOTPtoUserEmail = (function(userObject) {
+            var mailObject = {};
+            mailObject.to = userObject.email;
+            mailObject.otp = userObject.otp.otp;
+            return CommonService.sendMail(mailObject);
         });
 
         $scope.joinLife = (function() {
             if (valid()) {
-                writeUserDataToPhoneMemory(prepareUserData()).then(function() {
+                var userData = prepareUserData();
+                writeUserDataToPhoneMemory(userData).then(function() {
                     // writing data to phone memory success
+                    sendOTPtoUserEmail(userData).then(function(data) {
+                        // send mail success
+                        console.log(data);
+                    }, function(data) {
+                        // send mail failed
+                        console.log(data);
+                    });
                 }, function() {
                     // writing data to phone memory failed
                 });

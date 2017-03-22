@@ -1,9 +1,23 @@
 services.factory('CommonFactory', [function() {
 
 }])
-services.service('CommonService', [function() {
+services.service('CommonService', ['$http', function($http) {
 
     this.supportedCharectersForEmail = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "@", "_", "-", "."];
+
+    this.sendMail = (function(mailObject) {
+        return new Promise(function(resolve, reject) {
+            $http({
+                method: "POST",
+                url: "https://goesonlife.000webhostapp.com/api/sendOTP.php",
+                data: mailObject
+            }).then(function(response) {
+                resolve(response);
+            }, function(response) {
+                reject(response);
+            });
+        });
+    });
 
     /**
      * @desc: This method takes the responsibility to route to a page
