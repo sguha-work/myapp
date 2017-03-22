@@ -4,14 +4,28 @@ services.service('CommonService', ['$http', function($http) {
 
     this.sendMail = (function(mailObject) {
         return new Promise(function(resolve, reject) {
-            $http({
+            // $http({
+            //     method: "POST",
+            //     url: "https://goesonlife.000webhostapp.com/api/sendOTP.php",
+            //     data: JSON.stringify(mailObject),
+            //     headers: {
+            //         'Content-Type': 'application/json'
+            //     }
+            // }).then(function(response) {
+            //     resolve(response);
+            // }, function(response) {
+            //     reject(response);
+            // });
+            $.ajax({
                 method: "POST",
                 url: "https://goesonlife.000webhostapp.com/api/sendOTP.php",
-                data: mailObject
-            }).then(function(response) {
-                resolve(response);
-            }, function(response) {
-                reject(response);
+                data: mailObject,
+                success: function(data) {
+                    resolve(data);
+                },
+                error: function(data) {
+                    reject(data);
+                }
             });
         });
     });

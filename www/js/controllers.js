@@ -150,6 +150,9 @@ controllers.controller('joinLifeCtrl', ['$scope', '$stateParams', 'CommonService
             var mailObject = {};
             mailObject.to = userObject.email;
             mailObject.otp = userObject.otp.otp;
+            mailObject.subject = "Welcome to Life Your OTP is: " + userObject.otp.otp;
+            mailObject.body = "<b>Congratulations!</b> </br> <b>Hello " + userObject.firstName + " Welcome to LIFE.</b></br><p>Use the following OTP to complete join process</p></br><b>" + userObject.otp.otp + "</b>"
+            console.log(mailObject);
             return CommonService.sendMail(mailObject);
         });
 
