@@ -72,6 +72,7 @@ controllers.controller('joinLifeCtrl', ['$scope', '$stateParams', 'CommonService
             showAjaxCallError,
             hideAjaxCallError,
             writeUserDataToDatabase,
+            checkIfUserPhoneNumberExists,
             validateUserMobileNumber;
 
         (function() {
@@ -157,7 +158,7 @@ controllers.controller('joinLifeCtrl', ['$scope', '$stateParams', 'CommonService
             mailObject.to = userObject.email;
             mailObject.otp = userObject.otp.otp;
             mailObject.subject = "Welcome to Life Your OTP is: " + userObject.otp.otp;
-            mailObject.body = "<b>Congratulations!</b> </br> <b>Hello " + userObject.name.firstName + " Welcome to LIFE.</b></br><p>Use the following OTP to complete join process</p></br><b>" + userObject.otp.otp + "</b>"
+            mailObject.body = "<b>Congratulations!</b> </br> <b>Hello " + userObject.name.firstName + ", Welcome to LIFE.</b></br><p>Use the following OTP to complete join process</p></br><b>" + userObject.otp.otp + "</b>"
             console.log(mailObject);
             return CommonService.sendMail(mailObject);
         });
@@ -196,11 +197,15 @@ controllers.controller('joinLifeCtrl', ['$scope', '$stateParams', 'CommonService
             $("#join-life").find("#error_ajaxcall").hide();
         });
 
-        writeUserDataToDatabase = (function() {
+        writeUserDataToDatabase = (function(userData) {
             var dataObject = {};
             dataObject.type = "user-signup";
             dataObject.data = userData;
             return CommonService.writeDataToDatabase(dataObject);
+        });
+
+        checkIfUserPhoneNumberExists = (function(userData) {
+            return CommonService.checkIfUserPhoneNumberExists();
         });
 
         $scope.joinLife = (function() {
@@ -208,31 +213,42 @@ controllers.controller('joinLifeCtrl', ['$scope', '$stateParams', 'CommonService
             startAjaxCallAnimation();
             if (valid()) {
                 var userData = prepareUserData();
-                writeUserDataToPhoneMemory(userData).then(function() {
-                    // writing data to phone memory success
-                    sendOTPtoUserEmail(userData).then(function(data) {
-                        // send mail success
-                        console.log(data);
-                        hideAjaxCallError();
-                        writeUserDataToDatabase(userData).then(function() {
-                            // database writing done moving on to otp verification page
-                            hideAjaxCallError();
-                            stopAjaxCallAnimation();
-                            CommonService.routeTo('#/verify-otp');
+                checkIfUserPhoneNumberExists(userData).then(function(response) {
+                    if (response.userExists) {
+                        // user exists in database, showing move to sign in page message, disabling join button
+                    } else {
+                        // user is new, continuing join process
+                        writeUserDataToPhoneMemory(userData).then(function() {
+                            // writing data to phone memory success
+                            sendOTPtoUserEmail(userData).then(function(data) {
+                                // send mail success
+                                console.log(data);
+                                hideAjaxCallError();
+                                writeUserDataToDatabase(userData).then(function() {
+                                    // database writing done moving on to otp verification page
+                                    hideAjaxCallError();
+                                    stopAjaxCallAnimation();
+                                    CommonService.routeTo('#/verify-otp');
+                                }, function() {
+                                    // database writing failed
+                                    showAjaxCallError();
+                                });
+                            }, function(data) {
+                                // send mail failed
+                                stopAjaxCallAnimation();
+                                showAjaxCallError();
+                                console.log(data);
+                            });
                         }, function() {
-                            // database writing failed
-                            showAjaxCallError();
+                            // writing data to phone memory failed
+                            $("#joinLife-button3").removeAttr('disabled');
                         });
-                    }, function(data) {
-                        // send mail failed
-                        stopAjaxCallAnimation();
-                        showAjaxCallError();
-                        console.log(data);
-                    });
+                    }
                 }, function() {
-                    // writing data to phone memory failed
-                    $("#joinLife-button3").removeAttr('disabled');
+                    // error in ajax error_ajaxcall
+                    showAjaxCallError();
                 });
+
             }
         });
 

@@ -11,6 +11,12 @@ services.service('CommonService', ['$http', function($http) {
         });
     });
 
+    this.checkIfUserPhoneNumberExists = (function() {
+        return new Promise(function(resolve, reject) {
+            resolve({ userExists: false });
+        });
+    });
+
     this.sendMail = (function(mailObject) {
         return new Promise(function(resolve, reject) {
             $.ajax({
