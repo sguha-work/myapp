@@ -66,6 +66,12 @@ controllers.controller('joinLifeCtrl', ['$scope', '$stateParams', 'CommonService
             prepareUserData,
             validateUserEmail,
             sendOTPtoUserEmail,
+            startAjaxCallAnimation,
+            stopAjaxCallAnimation,
+            ajaxCallAnimationTimer,
+            showAjaxCallError,
+            hideAjaxCallError,
+            writeUserDataToDatabase,
             validateUserMobileNumber;
 
         (function() {
@@ -151,12 +157,55 @@ controllers.controller('joinLifeCtrl', ['$scope', '$stateParams', 'CommonService
             mailObject.to = userObject.email;
             mailObject.otp = userObject.otp.otp;
             mailObject.subject = "Welcome to Life Your OTP is: " + userObject.otp.otp;
-            mailObject.body = "<b>Congratulations!</b> </br> <b>Hello " + userObject.firstName + " Welcome to LIFE.</b></br><p>Use the following OTP to complete join process</p></br><b>" + userObject.otp.otp + "</b>"
+            mailObject.body = "<b>Congratulations!</b> </br> <b>Hello " + userObject.name.firstName + " Welcome to LIFE.</b></br><p>Use the following OTP to complete join process</p></br><b>" + userObject.otp.otp + "</b>"
             console.log(mailObject);
             return CommonService.sendMail(mailObject);
         });
 
+        startAjaxCallAnimation = (function() {
+            var index = 1;
+            ajaxCallAnimationTimer = window.setInterval(function() {
+                if (index) {
+                    index = 0;
+                    $("#join-life").animate({
+                        "opacity": "0.3"
+                    }, 500);
+                } else {
+                    index = 1;
+                    $("#join-life").animate({
+                        "opacity": "1"
+                    }, 500);
+                }
+
+            }, 500);
+
+        });
+
+        stopAjaxCallAnimation = (function() {
+            $("#join-life").animate({
+                "opacity": "1"
+            }, 500);
+            window.clearInterval(ajaxCallAnimationTimer);
+        });
+
+        showAjaxCallError = (function() {
+            $("#join-life").find("#error_ajaxcall").show();
+        });
+
+        hideAjaxCallError = (function() {
+            $("#join-life").find("#error_ajaxcall").hide();
+        });
+
+        writeUserDataToDatabase = (function() {
+            var dataObject = {};
+            dataObject.type = "user-signup";
+            dataObject.data = userData;
+            return CommonService.writeDataToDatabase(dataObject);
+        });
+
         $scope.joinLife = (function() {
+            $("#join-life").find("#joinLife-button3").attr('disabled', 'disabled');
+            startAjaxCallAnimation();
             if (valid()) {
                 var userData = prepareUserData();
                 writeUserDataToPhoneMemory(userData).then(function() {
@@ -164,12 +213,25 @@ controllers.controller('joinLifeCtrl', ['$scope', '$stateParams', 'CommonService
                     sendOTPtoUserEmail(userData).then(function(data) {
                         // send mail success
                         console.log(data);
+                        hideAjaxCallError();
+                        writeUserDataToDatabase(userData).then(function() {
+                            // database writing done moving on to otp verification page
+                            hideAjaxCallError();
+                            stopAjaxCallAnimation();
+                            CommonService.routeTo('#/verify-otp');
+                        }, function() {
+                            // database writing failed
+                            showAjaxCallError();
+                        });
                     }, function(data) {
                         // send mail failed
+                        stopAjaxCallAnimation();
+                        showAjaxCallError();
                         console.log(data);
                     });
                 }, function() {
                     // writing data to phone memory failed
+                    $("#joinLife-button3").removeAttr('disabled');
                 });
             }
         });

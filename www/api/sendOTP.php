@@ -1,5 +1,5 @@
 <?php
-
+header('Access-Control-Allow-Origin: *');
 require_once('common/sendMail.php');
 
 $email = new EmailSpark;
