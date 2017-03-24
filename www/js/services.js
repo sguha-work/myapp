@@ -9,7 +9,7 @@ services.service('CommonService', ['$http', function($http) {
         return new Promise(function(resolve, reject) {
             switch (dataObject.type) {
                 case "user-signup":
-                    console.log("signup service", dataObject);
+                    console.log("signup service " + JSON.stringify(dataObject));
                     $.ajax({
                         method: "POST",
                         url: "https://goesonlife.000webhostapp.com/api/signup.php",
