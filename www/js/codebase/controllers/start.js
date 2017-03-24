@@ -37,7 +37,6 @@ controllers.controller('startCtrl', ['$scope', '$stateParams', 'CommonService',
         });
 
         animate().then(function() {
-            console.log(services);
             checkForUserAvailabilityFile().then(function() {
                 window.location.href = '#/home';
             }, function() {

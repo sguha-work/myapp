@@ -143,7 +143,7 @@ controllers.controller('joinLifeCtrl', ['$scope', '$stateParams', 'CommonService
             userObject.email = $scope.user_email;
             userObject.mobileNumber = $scope.user_mobileNumber;
             userObject.password = $scope.user_password;
-            console.log(JSON.stringify(userObject));
+
             return userObject;
         });
 
@@ -159,7 +159,7 @@ controllers.controller('joinLifeCtrl', ['$scope', '$stateParams', 'CommonService
             mailObject.otp = userObject.otp.otp;
             mailObject.subject = "Welcome to Life Your OTP is: " + userObject.otp.otp;
             mailObject.body = "<b>Congratulations!</b> </br> <b>Hello " + userObject.name.firstName + ", Welcome to LIFE.</b></br><p>Use the following OTP to complete join process</p></br><b>" + userObject.otp.otp + "</b>"
-            console.log(mailObject);
+
             return CommonService.sendMail(mailObject);
         });
 
@@ -222,7 +222,7 @@ controllers.controller('joinLifeCtrl', ['$scope', '$stateParams', 'CommonService
                             // writing data to phone memory success
                             sendOTPtoUserEmail(userData).then(function(data) {
                                 // send mail success
-                                console.log(data);
+
                                 hideAjaxCallError();
                                 writeUserDataToDatabase(userData).then(function() {
                                     // database writing done moving on to otp verification page
@@ -237,7 +237,7 @@ controllers.controller('joinLifeCtrl', ['$scope', '$stateParams', 'CommonService
                                 // send mail failed
                                 stopAjaxCallAnimation();
                                 showAjaxCallError();
-                                console.log(data);
+
                             });
                         }, function() {
                             // writing data to phone memory failed
@@ -381,7 +381,6 @@ controllers.controller('startCtrl', ['$scope', '$stateParams', 'CommonService',
         });
 
         animate().then(function() {
-            console.log(services);
             checkForUserAvailabilityFile().then(function() {
                 window.location.href = '#/home';
             }, function() {

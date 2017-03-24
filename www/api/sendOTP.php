@@ -13,4 +13,5 @@ if($result) {
 } else {
     echo $response = "{\"status\":\"failed\"}";
 }
+die();
 ?>
