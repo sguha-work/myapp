@@ -16,10 +16,10 @@ $otpVerifiedOn = "";
 function getLastUserId() {
     global $databaseObject;
     $query = "SELECT MAX(User_Id) FROM User";
-    $row = $databaseObject->executeQuery($query);
+    $rows = $databaseObject->executeQuery($query);
     $id = 0;
-    if(sizeof($row)) {
-        $id = intval($row[0]['User_Id']);
+    if(sizeof($rows)) {
+        $id = intval($rows[0]['User_Id']);
     } else {
         $id = 1;
     }

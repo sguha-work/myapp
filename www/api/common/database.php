@@ -43,11 +43,15 @@
 
         public function executeQuery($query) {
             //$this->createConnection();
+            echo $query;
             $recordSet = $this->MySQLiconn->query($query);
-            $rows = $recordSet->fetch_array();
-            $recordSet->free();
+            if(strpos(strtolower($query), "select")) {
+                $rows = $recordSet->fetch_array();
+                $recordSet->free();
+                return $rows;
+            }
             //$this->destroyConnection();
-            return $rows;
+            return true;
         }
     }
 ?>
