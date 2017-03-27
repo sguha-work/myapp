@@ -10,7 +10,7 @@ $userEmail = $data["email"];
 $userMobileNumber = $data["mobileNumber"];
 $userPassword = $data["password"];
 $userName = $data["name"]["fullName"];
-$otpVerified = $data["otp"]["verfied"];
+$otpVerified = ($data["otp"]["verfied"])?1:0;
 $otpVerifiedOn = "";
 
 function getLastUserId() {
@@ -28,7 +28,7 @@ function getLastUserId() {
 
 $userId = getLastUserId() + 1;
 
-$query = "INSERT INTO User VALUES (".$userId.", \"".$databaseObject->escapeString($userEmail)."\", \"".$databaseObject->escapeString($userMobileNumber)."\",\"".$databaseObject->escapeString($userPassword)."\" \"".$databaseObject->escapeString($userName)."\", \"".$otpVerified."\")";
+$query = "INSERT INTO User VALUES (".$userId.", \"".$databaseObject->escapeString($userEmail)."\", \"".$databaseObject->escapeString($userMobileNumber)."\",\"".$databaseObject->escapeString($userPassword)."\", \"".$databaseObject->escapeString($userName)."\", ".$otpVerified.")";
 try {
     $databaseObject->executeQuery($query);
     echo "{status:\"success\"}";die();

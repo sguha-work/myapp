@@ -8,6 +8,10 @@
         private $MySQLiconn;
 
         function __construct() {
+            $this->MySQLiconn = new MySQLi($this->host,$this->userName,$this->password,$this->databaseName);
+            if($this->MySQLiconn->connect_errno) {
+                die("ERROR : -> ".$this->MySQLiconn->connect_error);
+            }
             
         }
 
@@ -23,7 +27,9 @@
         }
 
         public function escapeString($value) {
-            return $this->MySQLiconn->real_escape_string($value);
+            //$this->createConnection();
+            $outputString = $this->MySQLiconn->real_escape_string($value);
+            return $outputString;
         }
 
         public function escapeStringArray($values) {
@@ -36,12 +42,12 @@
         }
 
         public function executeQuery($query) {
-            $this->createConnection();
+            //$this->createConnection();
             $recordSet = $this->MySQLiconn->query($query);
-            $row = $recordSet->fetch_array();
+            $rows = $recordSet->fetch_array();
             $recordSet->free();
-            $this->destroyConnection();
-            return $row;
+            //$this->destroyConnection();
+            return $rows;
         }
     }
 ?>
