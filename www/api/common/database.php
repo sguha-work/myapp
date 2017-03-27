@@ -38,8 +38,10 @@
         public function executeQuery($query) {
             $this->createConnection();
             $recordSet = $this->MySQLiconn->query($query);
+            $row = $recordSet->fetch_array();
+            $recordSet->free();
             $this->destroyConnection();
-            return $recordSet;
+            return $row;
         }
     }
 ?>

@@ -191,6 +191,7 @@ controllers.controller('joinLifeCtrl', ['$scope', '$stateParams', 'CommonService
 
         showAjaxCallError = (function() {
             $("#join-life").find("#error_ajaxcall").show();
+            $("#join-life").find("#joinLife-button3").removeAttr('disabled');
         });
 
         hideAjaxCallError = (function() {
@@ -220,21 +221,20 @@ controllers.controller('joinLifeCtrl', ['$scope', '$stateParams', 'CommonService
                         // user is new, continuing join process
                         writeUserDataToPhoneMemory(userData).then(function() {
                             // writing data to phone memory success
-                            sendOTPtoUserEmail(userData).then(function(data) {
-                                // send mail success
-
+                            writeUserDataToDatabase(userData).then(function(data) {
+                                // writing to database success 
                                 hideAjaxCallError();
-                                writeUserDataToDatabase(userData).then(function() {
-                                    // database writing done moving on to otp verification page
+                                sendOTPtoUserEmail(userData).then(function() {
+                                    // send mail success moving on to otp verification page
                                     hideAjaxCallError();
                                     stopAjaxCallAnimation();
                                     CommonService.routeTo('#/verify-otp');
                                 }, function() {
-                                    // database writing failed
+                                    // sending mail failed
                                     showAjaxCallError();
                                 });
                             }, function(data) {
-                                // send mail failed
+                                // writing to database failed
                                 stopAjaxCallAnimation();
                                 showAjaxCallError();
 
