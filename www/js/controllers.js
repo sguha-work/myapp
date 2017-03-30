@@ -57,8 +57,6 @@ controllers.controller('imageCtrl', ['$scope', '$stateParams', // The following 
 controllers.controller('joinLifeCtrl', ['$scope', '$stateParams', 'CommonService',
     function($scope, $stateParams, CommonService) {
         var valid,
-            checkMobileNumber,
-            checkEmail,
             validateUserName,
             validateUserPassword,
             writeUserDataToPhoneMemory,
@@ -147,10 +145,8 @@ controllers.controller('joinLifeCtrl', ['$scope', '$stateParams', 'CommonService
             return userObject;
         });
 
-        writeUserDataToPhoneMemory = (function() {
-            return new Promise(function(resolve, reject) {
-                resolve();
-            });
+        writeUserDataToPhoneMemory = (function(userData) {
+            return JoinLifeService.writeUserDataToPhoneMemory(userData);
         });
 
         sendOTPtoUserEmail = (function(userObject) {
@@ -160,7 +156,7 @@ controllers.controller('joinLifeCtrl', ['$scope', '$stateParams', 'CommonService
             mailObject.subject = "Welcome to Life Your OTP is: " + userObject.otp.otp;
             mailObject.body = "<b>Congratulations!</b> </br> <b>Hello " + userObject.name.firstName + ", Welcome to LIFE.</b></br><p>Use the following OTP to complete join process</p></br><b>" + userObject.otp.otp + "</b>"
 
-            return CommonService.sendMail(mailObject);
+            return JoinLifeService.sendMail(mailObject);
         });
 
         startAjaxCallAnimation = (function() {
@@ -202,11 +198,11 @@ controllers.controller('joinLifeCtrl', ['$scope', '$stateParams', 'CommonService
             var dataObject = {};
             dataObject.type = "user-signup";
             dataObject.data = userData;
-            return CommonService.writeDataToDatabase(dataObject);
+            return JoinLifeService.writeUserDataToDatabase(dataObject);
         });
 
         checkIfUserPhoneNumberExists = (function(userData) {
-            return CommonService.checkIfUserPhoneNumberExists();
+            return JoinLifeService.checkIfUserPhoneNumberExists();
         });
 
         $scope.joinLife = (function() {
@@ -282,8 +278,6 @@ controllers.controller('joinLifeCtrl', ['$scope', '$stateParams', 'CommonService
                 CommonService.hideWarning(currentElement);
             }
         });
-
-
     }
 ]);
 controllers.controller('loadingCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
@@ -398,8 +392,6 @@ controllers.controller('updateStatusCtrl', ['$scope', '$stateParams', // The fol
     }
 ]);
 controllers.controller('verifyOtpCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
-    // You can include any angular dependencies as parameters for this function
-    // TIP: Access Route Parameters for your page via $stateParams.parameterName
     function($scope, $stateParams) {
 
 
