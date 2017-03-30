@@ -8,13 +8,7 @@ services.service('CommonService', ['$http', function($http) {
     var joinLife,
         isResponseContainServerError;
 
-    isResponseContainServerError = (function(data) {
-        if (data.indexOf('Fatal error') > -1 || data.indexOf("Warning") > -1) {
-            return true;
-        } else {
-            return false;
-        }
-    });
+
 
     /**
      * @desc: This method takes the responsibility to route to a page
@@ -63,7 +57,17 @@ services.service('CommonService', ['$http', function($http) {
 }]);
 services.service('JoinLifeService', ['$http', function($http) {
 
-    this.writeUserDataToDatabse = (function(dataObject) {
+    var isResponseContainServerError;
+
+    isResponseContainServerError = (function(data) {
+        if (data.indexOf('Fatal error') > -1 || data.indexOf("Warning") > -1) {
+            return true;
+        } else {
+            return false;
+        }
+    });
+
+    this.writeUserDataToDatabase = (function(dataObject) {
         return new Promise(function(resolve, reject) {
             console.log("signup service " + JSON.stringify(dataObject));
             $.ajax({
@@ -109,6 +113,12 @@ services.service('JoinLifeService', ['$http', function($http) {
                     reject(data);
                 }
             });
+        });
+    });
+
+    this.writeUserDataToPhoneMemory = (function(userData) {
+        return new Promise(function(resolve, reject) {
+            resolve();
         });
     });
 

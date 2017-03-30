@@ -54,8 +54,9 @@ controllers.controller('imageCtrl', ['$scope', '$stateParams', // The following 
 
     }
 ]);
-controllers.controller('joinLifeCtrl', ['$scope', '$stateParams', 'CommonService',
-    function($scope, $stateParams, CommonService) {
+controllers.controller('joinLifeCtrl', ['$scope', '$stateParams', 'CommonService', 'JoinLifeService',
+
+    function($scope, $stateParams, CommonService, JoinLifeService) {
         var valid,
             validateUserName,
             validateUserPassword,

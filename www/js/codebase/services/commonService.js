@@ -5,13 +5,7 @@ services.service('CommonService', ['$http', function($http) {
     var joinLife,
         isResponseContainServerError;
 
-    isResponseContainServerError = (function(data) {
-        if (data.indexOf('Fatal error') > -1 || data.indexOf("Warning") > -1) {
-            return true;
-        } else {
-            return false;
-        }
-    });
+
 
     /**
      * @desc: This method takes the responsibility to route to a page
