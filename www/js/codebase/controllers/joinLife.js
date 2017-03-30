@@ -1,6 +1,6 @@
-controllers.controller('joinLifeCtrl', ['$scope', '$stateParams', 'CommonService', 'JoinLifeService',
+controllers.controller('joinLifeCtrl', ['$scope', '$rootScope', '$stateParams', 'CommonService', 'JoinLifeService',
 
-    function($scope, $stateParams, CommonService, JoinLifeService) {
+    function($scope, $rootScope, $stateParams, CommonService, JoinLifeService) {
         var valid,
             validateUserName,
             validateUserPassword,
@@ -99,6 +99,7 @@ controllers.controller('joinLifeCtrl', ['$scope', '$stateParams', 'CommonService
             mailObject.to = userObject.email;
             mailObject.otp = userObject.otp.otp;
             mailObject.subject = "Welcome to Life Your OTP is: " + userObject.otp.otp;
+
             mailObject.body = "<b>Congratulations!</b> </br> <b>Hello " + userObject.name.firstName + ", Welcome to LIFE.</b></br><p>Use the following OTP to complete join process</p></br><b>" + userObject.otp.otp + "</b>"
 
             return JoinLifeService.sendMail(mailObject);
@@ -169,6 +170,7 @@ controllers.controller('joinLifeCtrl', ['$scope', '$stateParams', 'CommonService
                                     // send mail success moving on to otp verification page
                                     hideAjaxCallError();
                                     stopAjaxCallAnimation();
+                                    $rootScope.userObject = userData;
                                     CommonService.routeTo('#/verify-otp');
                                 }, function() {
                                     // sending mail failed
