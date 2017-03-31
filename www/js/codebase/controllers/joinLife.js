@@ -1,6 +1,6 @@
-controllers.controller('joinLifeCtrl', ['$scope', '$rootScope', '$stateParams', 'CommonService', 'JoinLifeService',
+controllers.controller('joinLifeCtrl', ['$scope', '$rootScope', 'CommonService', 'JoinLifeService',
 
-    function($scope, $rootScope, $stateParams, CommonService, JoinLifeService) {
+    function($scope, $rootScope, CommonService, JoinLifeService) {
         var valid,
             validateUserName,
             validateUserPassword,
