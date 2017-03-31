@@ -7,13 +7,13 @@
         <div class="spacer" style="width: 300px; height: 53px;"></div>
         <form id="verifyOtp-form3" class="list">
             <label class="item item-input" id="verifyOtp-input9">
-        <input type="number" placeholder="Enter the OTP send to your Email">
+        <input type="number" data-ng-model= "$parent.otp" placeholder="Enter the OTP send to your Email">
       </label>
         </form>
         <div id="verifyOtp-markdown9" class="show-list-numbers-and-dots">
-            <p style="color:#12A112;">Didn't receive the OTP yet to &lt;email&gt;
-                <strong>Click here</strong> to resend</p>
+            <p style="color:#12A112;">Didn't receive the OTP yet to <b>{{$parent.email}}</b>;
+                <a href=javascript:void(0) data-ng-click="resendOTP()"><strong>Click here</strong></a> to resend</p>
         </div>
-        <button id="verifyOtp-button4" class="button button-balanced  button-block">Verify</button>
+        <button id="verifyOtp-button4" data-ng-click="verifyOTP()" class="button button-balanced  button-block">Verify</button>
     </ion-content>
 </ion-view>
