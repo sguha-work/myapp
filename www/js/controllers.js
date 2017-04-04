@@ -394,22 +394,23 @@ controllers.controller('updateStatusCtrl', ['$scope', '$stateParams', // The fol
 
     }
 ]);
-controllers.controller('verifyOtpCtrl', ['$scope', '$rootScope', 'JoinLifeService',
+controllers.controller('verifyOtpCtrl', ['$scope', '$rootScope', 'JoinLifeService', 'CommonService', 'VerifyOtpService',
 
-    function($scope, $rootScope, JoinLifeService) {
+    function($scope, $rootScope, JoinLifeService, CommonService, VerifyOtpService) {
         var otpObject,
             sendOTPtoUserEmail,
             showAjaxCallError,
             hideAjaxCallError;
         $scope.userObject = $rootScope.userObject;
+        $scope.userObject = Object.assign({}, $rootScope.userObject);
         delete $rootScope.userObject;
-        otpObject = userObject.otp;
-        $scope.email = userObject.email;
+        otpObject = $scope.userObject.otp;
+        $scope.email = $scope.userObject.email;
 
         sendOTPtoUserEmail = (function(userObject) {
             var mailObject = {};
             mailObject.to = userObject.email;
-            mailObject.otp = userObject.otp.otp;
+            mailObject.otp = otpObject = CommonService.getOTPForUser;
             mailObject.subject = "Welcome to Life Your OTP is: " + userObject.otp.otp;
 
             mailObject.body = "<b>Congratulations!</b> </br> <b>Hello " + userObject.name.firstName + ", Welcome to LIFE.</b></br><p>Use the following OTP to complete join process</p></br><b>" + userObject.otp.otp + "</b>"
@@ -418,16 +419,22 @@ controllers.controller('verifyOtpCtrl', ['$scope', '$rootScope', 'JoinLifeServic
         });
 
         showAjaxCallError = (function() {
-            $("#join-life").find("#error_ajaxcall").show();
-            $("#join-life").find("#joinLife-button3").removeAttr('disabled');
+            $("#verify-otp").find("#error_ajaxcall").show();
+            $("#verify-otp").find("#verifyOtp-submit").removeAttr('disabled');
         });
 
         hideAjaxCallError = (function() {
-            $("#join-life").find("#error_ajaxcall").hide();
+            $("#verify-otp").find("#error_ajaxcall").hide();
         });
 
         $scope.verifyOTP = (function() {
             alert($scope.otp);
+            if ($scope.otp.trim() === $scope.userObject.otp.otp && $scope.userObject.otp.validTo < Date.now()) {
+                // congratulation otp verified
+                // calling service api to update the user database
+                VerifyOtpService.updateUserDatabaseAsOtpVerified();
+            }
+
         });
 
         $scope.resendOTP = (function() {

@@ -1,4 +1,4 @@
-<ion-view title="verify-otp" hide-nav-bar="true" id="page4" style="background-color:#43DB57;">
+<ion-view title="verify-otp" hide-nav-bar="true" id="verify-otp" style="background-color:#43DB57;">
     <ion-content padding="true" class="manual-ios-statusbar-padding">
         <div class="spacer" style="width: 300px; height: 53px;"></div>
         <div>
@@ -14,6 +14,10 @@
             <p style="color:#12A112;">Didn't receive the OTP yet to <b>{{$parent.email}}</b>;
                 <a href=javascript:void(0) data-ng-click="resendOTP()"><strong>Click here</strong></a> to resend</p>
         </div>
-        <button id="verifyOtp-button4" data-ng-click="verifyOTP()" class="button button-balanced  button-block">Verify</button>
+        <div id="error_ajaxcall" style="display:none; color: red;" class="show-list-numbers-and-dots">
+            <p style="color:#12A112;">Didn't receive the OTP yet to <b>{{$parent.email}}</b>;
+                <a href=javascript:void(0) data-ng-click="resendOTP()"><strong>Click here</strong></a> to resend</p>
+        </div>
+        <button id="verifyOtp-submit" data-ng-click="verifyOTP()" class="button button-balanced  button-block">Verify</button>
     </ion-content>
 </ion-view>
