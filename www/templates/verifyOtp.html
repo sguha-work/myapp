@@ -15,8 +15,11 @@
                 <a href=javascript:void(0) data-ng-click="resendOTP()"><strong>Click here</strong></a> to resend</p>
         </div>
         <div id="error_ajaxcall" style="display:none; color: red;" class="show-list-numbers-and-dots">
-            <p style="color:#12A112;">Didn't receive the OTP yet to <b>{{$parent.email}}</b>;
-                <a href=javascript:void(0) data-ng-click="resendOTP()"><strong>Click here</strong></a> to resend</p>
+            <p style="color:#12A112;">Unable to connect to server please try after sometime</p>
+        </div>
+        <div id="error_wrongOtp" style="display:none; color: red;" class="show-list-numbers-and-dots">
+            <p style="color:#12A112;">Wrong otp entered. Please try again or <a href=javascript:void(0) data-ng-click="resendOTP()"><strong>Click here to resend OTP</strong></a> </p>
+            </p>
         </div>
         <button id="verifyOtp-submit" data-ng-click="verifyOTP()" class="button button-balanced  button-block">Verify</button>
     </ion-content>

@@ -10,12 +10,14 @@ services.service('VerifyOtpService', ['$http', function($http) {
         }
     });
 
-    this.updateUserDatabaseAsOtpVerified = (function(dataObject) {
+    this.updateUserDatabaseAsOtpVerified = (function(email) {
         return new Promise(function(resolve, reject) {
             $.ajax({
                 method: "POST",
-                url: "https://goesonlife.000webhostapp.com/api/signup.php",
-                data: dataObject,
+                url: "https://goesonlife.000webhostapp.com/api/updateUserDatabaseAsOtpVerified.php",
+                data: {
+                    email: email
+                },
                 success: function(data) {
                     if (isResponseContainServerError(data)) {
                         reject(data);

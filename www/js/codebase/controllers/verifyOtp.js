@@ -1,10 +1,14 @@
 controllers.controller('verifyOtpCtrl', ['$scope', '$rootScope', 'JoinLifeService', 'CommonService', 'VerifyOtpService',
 
     function($scope, $rootScope, JoinLifeService, CommonService, VerifyOtpService) {
+
         var otpObject,
             sendOTPtoUserEmail,
             showAjaxCallError,
-            hideAjaxCallError;
+            hideAjaxCallError,
+            startAjaxCallAnimation,
+            stopAjaxCallAnimation;
+
         $scope.userObject = $rootScope.userObject;
         $scope.userObject = Object.assign({}, $rootScope.userObject);
         delete $rootScope.userObject;
@@ -36,9 +40,43 @@ controllers.controller('verifyOtpCtrl', ['$scope', '$rootScope', 'JoinLifeServic
             if ($scope.otp.trim() === $scope.userObject.otp.otp && $scope.userObject.otp.validTo < Date.now()) {
                 // congratulation otp verified
                 // calling service api to update the user database
-                VerifyOtpService.updateUserDatabaseAsOtpVerified();
+                $().find("#error_wronOtp").hide();
+                VerifyOtpService.updateUserDatabaseAsOtpVerified(userObject.email).then(function() {
+                    // if user database updatin done
+                    CommonService.routeTo('#/login');
+                }, function() {
+                    // if user database updation failed
+                });;
+            } else {
+                $().find("#error_wronOtp").show();
             }
 
+        });
+
+        startAjaxCallAnimation = (function() {
+            var index = 1;
+            ajaxCallAnimationTimer = window.setInterval(function() {
+                if (index) {
+                    index = 0;
+                    $("#join-life").animate({
+                        "opacity": "0.3"
+                    }, 500);
+                } else {
+                    index = 1;
+                    $("#join-life").animate({
+                        "opacity": "1"
+                    }, 500);
+                }
+
+            }, 500);
+
+        });
+
+        stopAjaxCallAnimation = (function() {
+            $("#join-life").animate({
+                "opacity": "1"
+            }, 500);
+            window.clearInterval(ajaxCallAnimationTimer);
         });
 
         $scope.resendOTP = (function() {

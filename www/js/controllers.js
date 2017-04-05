@@ -432,7 +432,7 @@ controllers.controller('verifyOtpCtrl', ['$scope', '$rootScope', 'JoinLifeServic
             if ($scope.otp.trim() === $scope.userObject.otp.otp && $scope.userObject.otp.validTo < Date.now()) {
                 // congratulation otp verified
                 // calling service api to update the user database
-                VerifyOtpService.updateUserDatabaseAsOtpVerified();
+                VerifyOtpService.updateUserDatabaseAsOtpVerified(userObject.email);
             }
 
         });
