@@ -79,6 +79,7 @@ controllers.controller('joinLifeCtrl', ['$scope', '$rootScope', 'CommonService',
         prepareUserData = (function() {
             var userObject = {};
             userObject.otp = CommonService.getOTPForUser();
+            userObject.deviceId = CommonService.getDeviceId();
             userObject.name = {};
             userObject.name.firstName = $scope.user_fullName.split(" ")[0];
             userObject.name.lastName = $scope.user_fullName.split(" ").pop();

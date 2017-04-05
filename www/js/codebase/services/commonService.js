@@ -51,4 +51,8 @@ services.service('CommonService', ['$http', function($http) {
         return otp;
     });
 
+    this.getDeviceId = (function() {
+        return window.device.uuid;
+    });
+
 }]);

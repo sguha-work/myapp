@@ -40,7 +40,7 @@ controllers.controller('verifyOtpCtrl', ['$scope', '$rootScope', 'JoinLifeServic
             if ($scope.otp.trim() === $scope.userObject.otp.otp && $scope.userObject.otp.validTo < Date.now()) {
                 // congratulation otp verified
                 // calling service api to update the user database
-                $().find("#error_wronOtp").hide();
+                $("#verify-otp").find("#error_wrongOtp").hide();
                 VerifyOtpService.updateUserDatabaseAsOtpVerified(userObject.email).then(function() {
                     // if user database updatin done
                     CommonService.routeTo('#/login');
@@ -48,7 +48,7 @@ controllers.controller('verifyOtpCtrl', ['$scope', '$rootScope', 'JoinLifeServic
                     // if user database updation failed
                 });;
             } else {
-                $().find("#error_wronOtp").show();
+                $("#verify-otp").find("#error_wrongOtp").show();
             }
 
         });
